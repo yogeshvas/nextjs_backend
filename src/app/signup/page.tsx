@@ -1,11 +1,11 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router"; // Changed import
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
+  // Changed component name to start with uppercase
   const router = useRouter();
   const [user, setUser] = useState({
     email: "",
@@ -31,13 +31,14 @@ const page = () => {
     if (
       user.email.length > 0 &&
       user.password.length > 0 &&
-      user.email.length > 0
+      user.username.length > 0 // Fixed typo in username length check
     ) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
     }
   }, [user]);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1>{loading ? "Processing" : "SignUp"}</h1>
@@ -72,12 +73,13 @@ const page = () => {
       <button
         onClick={onSignUp}
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+        disabled={buttonDisabled} // Fixed button disable logic
       >
-        {buttonDisabled ? "No signup" : "Signup"}
+        Signup
       </button>
       <Link href="/login">Visit login page</Link>
     </div>
   );
 };
 
-export default page;
+export default Page;

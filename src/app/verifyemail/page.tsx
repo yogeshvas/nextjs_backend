@@ -1,5 +1,3 @@
-"use client";
-
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -15,7 +13,7 @@ export default function VerifyEmailPage() {
       setVerified(true);
     } catch (error: any) {
       setError(true);
-      console.log(error.reponse.data);
+      console.log(error.response.data);
     }
   };
 
@@ -25,10 +23,16 @@ export default function VerifyEmailPage() {
   }, []);
 
   useEffect(() => {
-    if (token.length > 0) {
-      verifyUserEmail();
-    }
-  }, [token]);
+    const verify = async () => {
+      if (token.length > 0) {
+        await verifyUserEmail();
+      }
+    };
+
+    verify(); // Call the function directly here
+
+    // Add verifyUserEmail to the dependency array
+  }, [token, verifyUserEmail]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
