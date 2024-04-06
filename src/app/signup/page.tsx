@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/router"; // Changed import
+import { useRouter } from "next/navigation"; // Changed import
 import Link from "next/link";
 
 const Page = () => {
